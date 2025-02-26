@@ -1,3 +1,4 @@
+
 export function setPaginationMax(apiData, paginationElement) {
   console.log(apiData.info);
   const maxPages = apiData.info.pages;

@@ -24,6 +24,7 @@ export async function fetchCharacters(url = "") {
     const searchUrl = defaultUrl + url;
     // console.log(searchUrl);
     const response = await fetch(defaultUrl + url);
+
     if (!response.ok) {
       throw new Error(response.status);
     }
@@ -54,4 +55,5 @@ searchBar.addEventListener("submit", (event) => {
   const searchName = `/?name=${searchQuery}`;
   fetchCharacters(searchName);
 });
+
 
