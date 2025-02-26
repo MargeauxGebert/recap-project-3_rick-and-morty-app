@@ -17,15 +17,18 @@ const searchQuery = "";
 
 // Fetch Characters
 
-export async function fetchCharacters() {
+export async function fetchCharacters(url = "") {
   try {
-    const response = await fetch(`https://rickandmortyapi.com/api/character`);
+    const defaultUrl = "https://rickandmortyapi.com/api/character";
+    const searchUrl = defaultUrl + url;
+    // console.log(searchUrl);
+    const response = await fetch(defaultUrl + url);
     if (!response.ok) {
       throw new Error(response.status);
     }
     const responseData = await response.json();
     cardContainer.innerHTML = "";
-    console.log(responseData.results);
+    // console.log(responseData.results);
     //return responseData.results;
 
     responseData.results.forEach((element) => {
@@ -40,22 +43,9 @@ export async function fetchCharacters() {
 
 fetchCharacters();
 
-async function fetchRick(url) {
-  const response = await fetch(url);
-  const rick = await response.json();
-  console.log(rick);
-}
-const urlRick = "https://rickandmortyapi.com/api/character/?name=rick+sanchez";
-fetchRick(urlRick);
-// searchBar.addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   const searchQuery = event.target.elements.query.value;
-
-
-// /&name=${input}
-// });
-
-// Create a 'submit' event listener on the search bar.
-// Update the state variable searchQuery with the current text inside the search bar every time this event is triggered.
-// Modify the fetch URL again by adding another URL encoded attribute name: append &name=<searchQuery> to the URL. If the search query is an empty string, it will be ignored by the API, so don't worry about that.
-// Now trigger the function fetchCharacters whenever a submit event happens.
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const searchQuery = event.target.elements.query.value;
+  const searchName = `/?name=${searchQuery}`;
+  fetchCharacters(searchName);
+});
