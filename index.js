@@ -1,6 +1,4 @@
-
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
-
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -26,8 +24,14 @@ export async function fetchCharacters() {
       throw new Error(response.status);
     }
     const responseData = await response.json();
-
+    cardContainer.innerHTML = "";
     // console.log(responseData);
+    //return responseData.results;
+
+    responseData.results.forEach((element) => {
+      const newCard = CharacterCard(element);
+      cardContainer.append(newCard);
+    });
   } catch (error) {
     console.error(error.message);
     return error;
@@ -35,8 +39,3 @@ export async function fetchCharacters() {
 }
 
 fetchCharacters();
-
-//createCard
-
-const newCard = CharacterCard();
-cardContainer.append(newCard);
