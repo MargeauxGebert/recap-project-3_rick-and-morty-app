@@ -17,9 +17,9 @@ const searchQuery = "";
 
 // Fetch Characters
 
-export async function fetchCharacters() {
+export default async function fetchCharacters() {
   try {
-    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const response = await fetch("https://rickandmortyapi.com/api/character"<pageIndex>1);
     if (!response.ok) {
       throw new Error(response.status);
     }
@@ -39,3 +39,6 @@ export async function fetchCharacters() {
 }
 
 fetchCharacters();
+
+
+
