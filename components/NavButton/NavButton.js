@@ -1,9 +1,6 @@
 
 
 
-const nextButton = document. addEventListener("[`data-js=button--next`]");
-
-const prevButton = document. addEventListener("[`data-js=button-prev`]");
 
 
 if ( === 42) {
@@ -17,12 +14,4 @@ if ( === 42) {
   
    }
   
-   else {
-   
-    page++;
-    return //</pageIndex>;    cannot return and then ++
-    // where to add to? 
-    
-  
-  }
   
