@@ -1,5 +1,5 @@
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
-import setPaginationMax from "./components/NavPagination/NavPagination.js";
+import { setPaginationMax } from "./components/NavPagination/NavPagination.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -42,7 +42,6 @@ export async function fetchCharacters(url = "") {
   }
 }
 
-
 const firstPageCharacterData = await fetchCharacters();
 
 // Set max Page on first creation
@@ -55,5 +54,3 @@ searchBar.addEventListener("submit", (event) => {
   const searchName = `/?name=${searchQuery}`;
   fetchCharacters(searchName);
 });
-
-
