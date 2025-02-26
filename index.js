@@ -1,4 +1,5 @@
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
+import setPaginationMax from "./components/NavPagination/NavPagination.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -28,19 +29,23 @@ export async function fetchCharacters(url = "") {
     }
     const responseData = await response.json();
     cardContainer.innerHTML = "";
-    // console.log(responseData.results);
-    //return responseData.results;
-
     responseData.results.forEach((element) => {
       const newCard = CharacterCard(element);
       cardContainer.append(newCard);
     });
+
+    return responseData;
   } catch (error) {
     console.error(error.message);
     return error;
   }
 }
 
+
+const firstPageCharacterData = await fetchCharacters();
+
+// Set max Page on first creation
+setPaginationMax(firstPageCharacterData, pagination);
 fetchCharacters();
 
 searchBar.addEventListener("submit", (event) => {
@@ -49,3 +54,4 @@ searchBar.addEventListener("submit", (event) => {
   const searchName = `/?name=${searchQuery}`;
   fetchCharacters(searchName);
 });
+
